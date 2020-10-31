@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.dmgdavid2109.skeletonproject.feature.ui.MainFragment"
+        android:label="Main Fragment"
+        tools:layout="@layout/main_fragment">
+
+       <!-- <action
+            android:id="@+id/action_repositoriesListFragment_to_repositoriesDetailFragment"
+            app:destination="@id/repositoriesDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left" />-->
+
+    </fragment>
+
+<!--    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.dmgdavid2109.skeltonproject.feature.SecondFragment"
+        android:label="repositoriesDetailFragment"
+        tools:layout="@layout/kotlin_second_fragment">
+
+        <argument
+            android:name="repo"
+            app:argType="com.dmgdavid2109.skeltonproject.kotlinrepos.domain.model.KotlinRepo" />
+
+    </fragment>-->
+
+</navigation>

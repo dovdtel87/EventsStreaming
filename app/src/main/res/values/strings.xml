@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SkeltonProject</string>
+    <string name="generic_error">There was an error!</string>
+    <string name="try_again">Try again</string>
+</resources>

@@ -1,0 +1,10 @@
+package com.dmgdavid2109.skeletonproject.feature.data.model
+
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class StageDto(
+    @field:Json(name = "name") val name: String,
+    @field:Json(name = "uuid") val uuid: String
+)
