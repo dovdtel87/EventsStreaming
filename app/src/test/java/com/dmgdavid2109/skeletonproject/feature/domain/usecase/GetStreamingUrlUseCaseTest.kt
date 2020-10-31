@@ -16,9 +16,9 @@ object GetStreamingUrlUseCaseTest : Spek({
     val broadcastUrlMapper: BroadcastUrlMapper by mock<BroadcastUrlMapper>()
 
     val token = "aToken"
-    val broadCastDto1 = BroadcastDto("mixURL", "mixer")
-    val broadCastDto2 = BroadcastDto("rtmpURL", "rtmp")
-    val broadCastDto3 = BroadcastDto("otherUrl", "otherUrl")
+    val broadCastDto1 = BroadcastDto("mixURL", "mixer", "active")
+    val broadCastDto2 = BroadcastDto("rtmpURL", "rtmp", "active")
+    val broadCastDto3 = BroadcastDto("otherUrl", "otherUrl", "active")
     val list = listOf<BroadcastDto>(broadCastDto1, broadCastDto2, broadCastDto3)
     val response = StageDetailResponse(list)
 
@@ -33,11 +33,11 @@ object GetStreamingUrlUseCaseTest : Spek({
     describe("invoke") {
         beforeEachTest {
             every { repository.getStageDetail ("sessionToken", "eventId", "uuod") } returns Single.just(response)
-            every { broadcastUrlMapper.map(any()) } returns token
+            every { broadcastUrlMapper.map(any()) } returns broadCastDto1
         }
         it("returns the url") {
             val testObserver = getStreamingUrlUseCase.invoke("sessionToken", "eventId", "uuod").test()
-            testObserver.assertValue(token)
+            testObserver.assertValue(broadCastDto1)
         }
     }
 })

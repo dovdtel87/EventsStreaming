@@ -9,9 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.dmgdavid2109.skeletonproject.R
 import com.dmgdavid2109.skeletonproject.common.ui.customviews.LoadingView
+import com.dmgdavid2109.skeletonproject.common.ui.setViewModelInputs
 import com.dmgdavid2109.skeletonproject.common.ui.viewBinding
 import com.dmgdavid2109.skeletonproject.databinding.MainFragmentBinding
 import com.dmgdavid2109.skeletonproject.di.ViewModelFactory
+import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
 class MainFragment @Inject constructor(
@@ -27,6 +29,7 @@ class MainFragment @Inject constructor(
         super.onViewCreated(view, savedInstanceState)
         bindView()
         binding.loginWebView.setViewModel(mainViewModel)
+        binding.loadingView.setViewModelInputs(mainViewModel)
         binding.loginWebView.loadLoginPage()
     }
 
@@ -39,9 +42,13 @@ class MainFragment @Inject constructor(
                 binding.loadingView.status(LoadingView.VisibilityState.GONE)
             }
 
-            viewState.streamUrl.let { url ->
-                if(url.isEmpty().not()) {
-                    reproduceVideo(url)
+            with(viewState) {
+                if(streamUrl.isEmpty().not()) {
+                    if(status == "active") {
+                        reproduceVideo(streamUrl)
+                    } else {
+                        loadingView.status(LoadingView.VisibilityState.OFFLINE)
+                    }
                 }
             }
         })

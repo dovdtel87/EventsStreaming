@@ -1,6 +1,5 @@
 package com.dmgdavid2109.skeletonproject.feature.data.mapper
 
-import com.dmgdavid2109.skeletonproject.feature.data.mapper.BroadcastUrlMapper
 import com.dmgdavid2109.skeletonproject.feature.data.model.BroadcastDto
 import com.dmgdavid2109.skeletonproject.feature.data.model.StageDetailResponse
 import junit.framework.TestCase.assertEquals
@@ -13,17 +12,17 @@ object BroadcastUrlMapperTest : Spek({
         BroadcastUrlMapper()
     }
 
-    val broadCastDto1 = BroadcastDto("mixURL", "mixer")
-    val broadCastDto2 = BroadcastDto("rtmpURL", "rtmp")
-    val broadCastDto3 = BroadcastDto("otherUrl", "otherUrl")
+    val broadCastDto1 = BroadcastDto("mixURL", "mixer", "active")
+    val broadCastDto2 = BroadcastDto("rtmpURL", "rtmp", "active")
+    val broadCastDto3 = BroadcastDto("otherUrl", "otherUrl", "active")
     val list = listOf<BroadcastDto>(broadCastDto1, broadCastDto2, broadCastDto3)
     val response = StageDetailResponse(list)
     val expectedUrl = "mixURL"
 
     describe("map") {
-        it("then maps to correct URL") {
+        it("then maps to correct broadcast URL") {
             val result = mapper.map(response)
-            assertEquals(expectedUrl, result)
+            assertEquals(broadCastDto1, result)
         }
     }
 })

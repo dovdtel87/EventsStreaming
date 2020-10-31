@@ -6,6 +6,7 @@ import com.dmgdavid2109.skeletonproject.R
 import com.dmgdavid2109.skeletonproject.common.ui.BaseViewModel
 import com.dmgdavid2109.skeletonproject.common.ui.LceViewModelInputs
 import com.dmgdavid2109.skeletonproject.common.ui.ViewStateLiveData
+import com.dmgdavid2109.skeletonproject.feature.data.model.BroadcastDto
 import com.dmgdavid2109.skeletonproject.feature.domain.usecase.GetSessionTokenUseCase
 import com.dmgdavid2109.skeletonproject.feature.domain.usecase.GetStagesUseCase
 import com.dmgdavid2109.skeletonproject.feature.domain.usecase.GetStreamingUrlUseCase
@@ -36,8 +37,8 @@ class MainViewModel @Inject constructor(
                 getStagesUseCase.invoke(sessionToken, eventId)
                     .map { uuid ->
                         getStreamingUrlUseCase.invoke(sessionToken, eventId, uuid).autoDispose(this).subscribe(
-                            Consumer<String>{ url ->
-                                _viewState.value = _viewState.value?.copy(isLoading = false, streamUrl = url)
+                            Consumer<BroadcastDto>{ broadcast ->
+                                _viewState.value = _viewState.value?.copy(isLoading = false, streamUrl = broadcast.stream_url, status = broadcast.status)
                             }, this)
                     }.autoDispose(this).subscribe(Consumer {}, this)
             }.autoDispose(this)

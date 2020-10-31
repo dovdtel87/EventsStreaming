@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SkeltonProject</string>
-    <string name="generic_error">There was an error!</string>
+    <string name="app_name">SkeletonProject</string>
+    <string name="generic_error">Not online yet, try again later</string>
     <string name="try_again">Try again</string>
 </resources>
